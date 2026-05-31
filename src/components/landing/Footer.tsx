@@ -64,7 +64,7 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 mt-14 pt-7 border-t border-dl-border">
           <span className="text-[13px] text-white/42">© 2026 DataLens. All rights reserved.</span>
           <span className="text-[13px] text-white/42 font-mono">
-            Built in Lagos <span className="text-dl-green">·</span> Naija to the world 🇳🇬
+            FBIS Technologies Limited
           </span>
         </div>
       </div>
