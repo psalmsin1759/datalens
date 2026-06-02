@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DataLensLogo } from "@/components/ui/DataLensLogo";
+import { Nav } from "@/components/landing/Nav";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Footer } from "@/components/landing/Footer";
 
@@ -18,8 +18,8 @@ const channels = [
       </svg>
     ),
     label: "Email",
-    value: "hello@datalens.ng",
-    href: "mailto:hello@datalens.ng",
+    value: "support@fbistech.com",
+    href: "mailto:support@fbistech.com",
     color: "#00E676",
     note: "Replies within 24 hours",
   },
@@ -51,33 +51,14 @@ const channels = [
 
 const faqs = [
   { q: "How do I report a bug?", a: "Use the form and pick “Bug report” — attach a screenshot if you can. We triage bugs within 4 hours during working hours." },
-  { q: "Where is DataLens based?", a: "Lagos, Nigeria. We’re a Nigerian product built for Nigerians." },
-  { q: "Do you have a press kit?", a: "Yes — email hello@datalens.ng with subject “Press” and we’ll send logos, screenshots, and founder bios." },
+  { q: "Where is DataLens based?", a: "7th Floor, Churchgate Tower 2, Victoria Island, Lagos. We’re a Nigerian product built for Nigerians." },
+  { q: "Do you have a press kit?", a: "Yes — email support@fbistech.com with subject “Press” and we’ll send logos, screenshots, and founder bios." },
 ];
 
 export default function ContactPage() {
   return (
     <>
-      {/* Minimal nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[rgba(13,13,13,0.85)] backdrop-blur-xl border-b border-dl-border">
-        <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <DataLensLogo size={30} />
-            <span className="text-xl font-extrabold tracking-tight">
-              Data<span className="text-dl-green">Lens</span>
-            </span>
-          </Link>
-          <Link
-            href="/"
-            className="text-sm text-white/50 hover:text-white transition-colors duration-150 flex items-center gap-1.5"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-            Back to home
-          </Link>
-        </div>
-      </nav>
+      <Nav />
 
       <main className="min-h-screen bg-dl-bg pt-28 pb-0">
 
@@ -151,9 +132,9 @@ export default function ContactPage() {
                     </svg>
                   </span>
                   <div>
-                    <div className="text-[15px] font-bold">Lagos, Nigeria</div>
+                    <div className="text-[15px] font-bold">7th Floor, Churchgate Tower 2</div>
                     <div className="text-sm text-white/42 mt-0.5 leading-relaxed">
-                      Victoria Island · WAT (UTC+1)
+                      Victoria Island, Lagos · WAT (UTC+1)
                     </div>
                     <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono text-dl-green">
                       <span className="w-1.5 h-1.5 rounded-full bg-dl-green animate-pulse" />

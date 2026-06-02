@@ -8,9 +8,9 @@ const footerLinks = {
     { label: "Download", href: "#download" },
   ],
   Company: [
-    { label: "About", href: "#" },
-    { label: "Privacy", href: "#" },
-    { label: "Careers", href: "#" },
+    { label: "About", href: "/about" },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" },
     { label: "Contact", href: "/contact" },
   ],
   Support: [

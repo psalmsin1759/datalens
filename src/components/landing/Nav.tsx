@@ -6,10 +6,10 @@ import Link from "next/link";
 import { DataLensLogo } from "@/components/ui/DataLensLogo";
 
 const navLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#how", label: "How it works" },
-  { href: "#buy", label: "Buy data" },
-  { href: "#reviews", label: "Reviews" },
+  { href: "/#features", label: "Features" },
+  { href: "/#how", label: "How it works" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Nav() {
@@ -34,7 +34,7 @@ export function Nav() {
       style={{ borderBottom: "1px solid" }}
     >
       <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="#top" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-2.5">
           <DataLensLogo size={32} />
           <span className="text-xl font-extrabold tracking-tight">
             Data<span className="text-dl-green">Lens</span>
@@ -44,23 +44,23 @@ export function Nav() {
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-9">
           {navLinks.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               className="text-sm font-medium text-white/66 hover:text-white transition-colors duration-150 cursor-pointer"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </div>
 
         <div className="flex items-center gap-3">
-          <a
-            href="#download"
+          <Link
+            href="/#download"
             className="hidden md:inline-flex items-center justify-center h-11 px-5 rounded-full bg-dl-green text-[#06140C] text-sm font-bold cursor-pointer transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,230,118,0.35)]"
           >
             Get the app
-          </a>
+          </Link>
 
           {/* Mobile hamburger */}
           <button
@@ -83,22 +83,22 @@ export function Nav() {
       >
         <div className="px-6 py-4 flex flex-col gap-4">
           {navLinks.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               onClick={() => setMenuOpen(false)}
               className="text-base font-medium text-white/66 hover:text-white transition-colors duration-150"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#download"
+          <Link
+            href="/#download"
             onClick={() => setMenuOpen(false)}
             className="inline-flex items-center justify-center h-11 px-5 rounded-full bg-dl-green text-[#06140C] text-sm font-bold"
           >
             Get the app
-          </a>
+          </Link>
         </div>
       </motion.div>
     </motion.nav>

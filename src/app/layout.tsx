@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "DataLens — Your data, fully accounted for",
   description:
-    "Track every MB across MTN, Airtel, Glo and 9mobile. Buy data in-app, see exactly where it went, and never wonder again. Built in Lagos.",
+    "Track every MB across MTN, Airtel, Glo and 9mobile. Buy data in-app, see exactly where it went, and never wonder again.",
   keywords: ["data tracker", "Nigeria", "MTN", "Airtel", "Glo", "9mobile", "data usage", "Nigeria fintech"],
 };
 
