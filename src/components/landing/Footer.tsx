@@ -11,7 +11,7 @@ const footerLinks = {
     { label: "About", href: "#" },
     { label: "Privacy", href: "#" },
     { label: "Careers", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Contact", href: "/contact" },
   ],
   Support: [
     { label: "Help center", href: "#" },
@@ -23,8 +23,14 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="pt-[72px] pb-10 border-t border-dl-border bg-dl-bg-deep">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <footer className="relative overflow-hidden pt-[72px] pb-10 border-t border-dl-border bg-dl-bg-deep">
+      <span
+        aria-hidden
+        className="pointer-events-none select-none absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/4 text-[clamp(80px,18vw,220px)] font-extrabold tracking-tighter text-white/[0.03] whitespace-nowrap leading-none"
+      >
+        DataLens
+      </span>
+      <div className="relative max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-2 sm:grid-cols-[1.6fr_1fr_1fr_1fr] gap-10">
           {/* Brand */}
           <div className="col-span-2 sm:col-span-1">
