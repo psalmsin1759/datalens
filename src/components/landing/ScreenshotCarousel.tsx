@@ -10,16 +10,16 @@ const GAP = 32;
 const SLOT = ITEM_W + GAP;
 
 const screens = [
-  { label: "Dashboard",  caption: "Your data at a glance",    color: "#00E676", src: "/images/appscreens/1.png"  },
-  { label: "Usage",      caption: "Every MB, identified",      color: "#5BC0EB", src: "/images/appscreens/2.png"  },
-  { label: "History",    caption: "Every naira tracked",       color: "#FFD700", src: "/images/appscreens/3.png"  },
-  { label: "Buy Data",   caption: "Top up in seconds",         color: "#00E676", src: "/images/appscreens/4.png"  },
-  { label: "Alerts",     caption: "Never be surprised",        color: "#FFB800", src: "/images/appscreens/5.png"  },
-  { label: "Reports",    caption: "Understand your patterns",  color: "#0BC97A", src: "/images/appscreens/6.png"  },
-  { label: "Network",    caption: "Carrier at a glance",       color: "#FFD700", src: "/images/appscreens/7.png"  },
-  { label: "Breakdown",  caption: "Per-app visibility",        color: "#5BC0EB", src: "/images/appscreens/8.png"  },
-  { label: "Profile",    caption: "Your account",              color: "#FFB800", src: "/images/appscreens/9.png"  },
-  { label: "Settings",   caption: "Customise the experience",  color: "#00E676", src: "/images/appscreens/10.png" },
+  { label: "Onboarding",               caption: "Get started in seconds",         color: "#00E676", src: "/images/appscreens/1.png"  },
+  { label: "Dashboard",                caption: "Every MB, identified",            color: "#5BC0EB", src: "/images/appscreens/2.png"  },
+  { label: "Buy & Track / Track only", caption: "Choose how you stay in control",  color: "#FFD700", src: "/images/appscreens/3.png"  },
+  { label: "Select Data Plan",         caption: "Pick the plan that fits",         color: "#00E676", src: "/images/appscreens/4.png"  },
+  { label: "Buy Data",                 caption: "Top up without leaving the app",  color: "#FFB800", src: "/images/appscreens/5.png"  },
+  { label: "Confirmation Purchase",    caption: "Your purchase, confirmed instantly", color: "#0BC97A", src: "/images/appscreens/6.png"  },
+  { label: "Track Usage",              caption: "See exactly where data goes",     color: "#FFD700", src: "/images/appscreens/7.png"  },
+  { label: "Active Tracking",          caption: "Live breakdown by app",           color: "#5BC0EB", src: "/images/appscreens/8.png"  },
+  { label: "History",                  caption: "Your full usage history",         color: "#FFB800", src: "/images/appscreens/9.png"  },
+  { label: "Email Report",             caption: "Usage insights in your inbox",   color: "#00E676", src: "/images/appscreens/10.png" },
 ];
 
 const getTarget = (i: number) => ((screens.length - 1) / 2 - i) * SLOT;
