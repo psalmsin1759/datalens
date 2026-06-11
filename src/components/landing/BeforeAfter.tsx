@@ -1,4 +1,5 @@
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/FadeIn";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const beforeItems = [
   {
@@ -88,45 +89,58 @@ const afterItems = [
 
 export function BeforeAfter() {
   return (
-    <section className="py-[110px] bg-dl-bg-deep">
+    <section className="py-24 md:py-32 bg-dl-bg-deep">
       <div className="max-w-[1200px] mx-auto px-6">
-        <FadeIn className="max-w-[680px] mx-auto text-center mb-16">
-          <span className="font-mono text-xs font-bold tracking-[2.5px] uppercase text-dl-green">
-            Before &amp; after
-          </span>
-          <h2 className="text-[clamp(30px,4vw,46px)] font-extrabold tracking-tight leading-[1.08] mt-4">
-            Life before DataLens.<br />
-            <span className="text-dl-green">Life after.</span>
-          </h2>
-        </FadeIn>
+        <SectionHeading
+          index="01"
+          eyebrow="Before & After"
+          segments={[
+            { text: "Life before DataLens." },
+            { text: "Life after.", className: "text-dl-green", break: true },
+          ]}
+          className="mb-16 md:mb-20"
+        />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* VS badge */}
+          <div
+            aria-hidden="true"
+            className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-16 h-16 rounded-full items-center justify-center bg-dl-bg-deep border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.8)]"
+          >
+            <span className="font-display text-base font-bold text-gradient-green">VS</span>
+          </div>
+
           {/* BEFORE */}
           <FadeIn direction="right">
-            <div className="rounded-3xl border border-dl-border p-8 h-full relative overflow-hidden"
-              style={{ background: "linear-gradient(135deg, #0D0D0D, #141929)" }}>
-              {/* Dim red glow */}
-              <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none"
-                style={{ background: "radial-gradient(circle, rgba(255,68,68,0.08), transparent 70%)", filter: "blur(20px)" }} />
+            <div className="rounded-[28px] border border-white/[0.07] bg-white/[0.015] p-8 h-full relative overflow-hidden">
+              <div
+                aria-hidden="true"
+                className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none"
+                style={{ background: "radial-gradient(circle, rgba(255,68,68,0.08), transparent 70%)", filter: "blur(20px)" }}
+              />
 
               <div className="flex items-center gap-3 mb-8">
-                <span className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{ background: "rgba(255,68,68,0.12)", border: "1px solid rgba(255,68,68,0.3)" }}>
+                <span
+                  className="w-10 h-10 rounded-full flex items-center justify-center"
+                  style={{ background: "rgba(255,68,68,0.12)", border: "1px solid rgba(255,68,68,0.3)" }}
+                >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF4444" strokeWidth="2" strokeLinecap="round">
                     <circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/>
                   </svg>
                 </span>
                 <div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-white/42 mb-0.5">Before DataLens</div>
-                  <div className="text-lg font-bold text-white/60">Flying blind</div>
+                  <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/40 mb-0.5">Before DataLens</div>
+                  <div className="font-display text-lg font-bold text-white/60">Flying blind</div>
                 </div>
               </div>
 
-              <StaggerContainer className="space-y-4" staggerDelay={0.06}>
+              <StaggerContainer className="space-y-3.5" staggerDelay={0.06}>
                 {beforeItems.map((item, i) => (
                   <StaggerItem key={i}>
-                    <div className="flex items-start gap-3.5 p-4 rounded-xl"
-                      style={{ background: "rgba(255,68,68,0.04)", border: "1px solid rgba(255,68,68,0.1)" }}>
+                    <div
+                      className="flex items-start gap-3.5 p-4 rounded-2xl"
+                      style={{ background: "rgba(255,68,68,0.04)", border: "1px solid rgba(255,68,68,0.1)" }}
+                    >
                       <span className="mt-px shrink-0">{item.icon}</span>
                       <p className="text-[14px] text-white/50 leading-relaxed">{item.text}</p>
                     </div>
@@ -138,33 +152,42 @@ export function BeforeAfter() {
 
           {/* AFTER */}
           <FadeIn direction="left" delay={0.1}>
-            <div className="rounded-3xl border p-8 h-full relative overflow-hidden"
+            <div
+              className="rounded-[28px] border p-8 h-full relative overflow-hidden"
               style={{
-                background: "linear-gradient(135deg, #0A2C1A, #0F3D24, #141929)",
+                background: "linear-gradient(135deg, rgba(10,44,26,0.85), rgba(15,61,36,0.5) 55%, rgba(7,7,7,0.4))",
                 borderColor: "rgba(0,230,118,0.3)",
-              }}>
-              {/* Green glow */}
-              <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none"
-                style={{ background: "radial-gradient(circle, rgba(0,230,118,0.15), transparent 70%)", filter: "blur(20px)" }} />
+                boxShadow: "0 0 80px rgba(0,230,118,0.07), inset 0 1px 0 rgba(255,255,255,0.05)",
+              }}
+            >
+              <div
+                aria-hidden="true"
+                className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none"
+                style={{ background: "radial-gradient(circle, rgba(0,230,118,0.15), transparent 70%)", filter: "blur(20px)" }}
+              />
 
               <div className="flex items-center gap-3 mb-8">
-                <span className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{ background: "rgba(0,230,118,0.15)", border: "1px solid rgba(0,230,118,0.35)" }}>
+                <span
+                  className="w-10 h-10 rounded-full flex items-center justify-center"
+                  style={{ background: "rgba(0,230,118,0.15)", border: "1px solid rgba(0,230,118,0.35)" }}
+                >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00E676" strokeWidth="2" strokeLinecap="round">
                     <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
                   </svg>
                 </span>
                 <div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-dl-green/70 mb-0.5">After DataLens</div>
-                  <div className="text-lg font-bold text-white">Fully in control</div>
+                  <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-dl-green/70 mb-0.5">After DataLens</div>
+                  <div className="font-display text-lg font-bold text-white">Fully in control</div>
                 </div>
               </div>
 
-              <StaggerContainer className="space-y-4" staggerDelay={0.06}>
+              <StaggerContainer className="space-y-3.5" staggerDelay={0.06}>
                 {afterItems.map((item, i) => (
                   <StaggerItem key={i}>
-                    <div className="flex items-start gap-3.5 p-4 rounded-xl"
-                      style={{ background: "rgba(0,230,118,0.05)", border: "1px solid rgba(0,230,118,0.15)" }}>
+                    <div
+                      className="flex items-start gap-3.5 p-4 rounded-2xl backdrop-blur-sm"
+                      style={{ background: "rgba(0,230,118,0.05)", border: "1px solid rgba(0,230,118,0.15)" }}
+                    >
                       <span className="mt-px shrink-0">{item.icon}</span>
                       <p className="text-[14px] text-white/80 leading-relaxed">{item.text}</p>
                     </div>

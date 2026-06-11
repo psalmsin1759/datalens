@@ -100,3 +100,57 @@ export function StaggerItem({
     </motion.div>
   );
 }
+
+export interface TextSegment {
+  text: string;
+  className?: string;
+  break?: boolean;
+}
+
+export function TextReveal({
+  segments,
+  className,
+  delay = 0,
+  stagger = 0.05,
+}: {
+  segments: TextSegment[];
+  className?: string;
+  delay?: number;
+  stagger?: number;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
+
+  let wordIndex = 0;
+
+  return (
+    <span ref={ref} className={className}>
+      {segments.map((seg, si) => (
+        <span key={si} className={seg.className}>
+          {seg.break && <br />}
+          {seg.text.split(" ").map((word, wi) => {
+            const idx = wordIndex++;
+            return (
+              <span key={wi}>
+                <span className="inline-block overflow-hidden align-bottom pb-[0.1em] -mb-[0.1em]">
+                  <motion.span
+                    className="inline-block"
+                    initial={{ y: "115%" }}
+                    animate={inView ? { y: 0 } : {}}
+                    transition={{
+                      duration: 0.85,
+                      ease: [0.22, 1, 0.36, 1],
+                      delay: delay + idx * stagger,
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                </span>{" "}
+              </span>
+            );
+          })}
+        </span>
+      ))}
+    </span>
+  );
+}

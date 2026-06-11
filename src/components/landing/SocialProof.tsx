@@ -1,4 +1,4 @@
-import { FadeIn } from "@/components/ui/FadeIn";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 interface Tweet {
   handle: string;
@@ -28,7 +28,7 @@ const row2 = tweets.slice(5, 10);
 
 function TweetCard({ tweet }: { tweet: Tweet }) {
   return (
-    <div className="flex-shrink-0 w-[320px] mx-3 rounded-2xl border border-dl-border bg-dl-surface p-5 hover:-translate-y-1 transition-transform duration-200 cursor-default">
+    <div className="flex-shrink-0 w-[320px] mx-3 rounded-2xl border border-white/[0.07] bg-white/[0.025] backdrop-blur-sm p-5 hover:border-white/[0.15] hover:bg-white/[0.04] transition-colors duration-200 cursor-default">
       <div className="flex items-center gap-3 mb-3">
         <span
           className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-base shrink-0"
@@ -43,7 +43,7 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5">
             <span className="text-sm font-bold truncate">{tweet.name}</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d9bf0" className="shrink-0">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#1d9bf0" className="shrink-0" aria-hidden="true">
               <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91-1.01-1-2.52-1.27-3.91-.81-.67-1.31-1.9-2.19-3.34-2.19-1.43 0-2.67.88-3.34 2.19-1.39-.46-2.9-.2-3.91.81-1 1.01-1.27 2.52-.81 3.91-1.31.67-2.19 1.9-2.19 3.34 0 1.43.88 2.67 2.19 3.34-.46 1.39-.2 2.9.81 3.91 1.01 1 2.52 1.27 3.91.81.67 1.31 1.9 2.19 3.34 2.19 1.43 0 2.67-.88 3.34-2.19 1.39.46 2.9.2 3.91-.81 1-1.01 1.27-2.52.81-3.91 1.31-.67 2.19-1.9 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/>
             </svg>
           </div>
@@ -61,7 +61,7 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
           </div>
         </div>
         {/* X/Twitter icon */}
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.3)" className="shrink-0">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.3)" className="shrink-0" aria-hidden="true">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.258 5.63 5.906-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
       </div>
@@ -73,50 +73,48 @@ function TweetCard({ tweet }: { tweet: Tweet }) {
 function MarqueeRow({ tweets, reverse = false }: { tweets: Tweet[]; reverse?: boolean }) {
   const doubled = [...tweets, ...tweets];
   return (
-    <div className="relative overflow-hidden w-full">
+    <div className="relative overflow-hidden w-full marquee-paused">
       {/* Edge masks */}
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-24 z-10"
-        style={{ background: "linear-gradient(to right, #0D0D0D, transparent)" }} />
-      <div className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10"
-        style={{ background: "linear-gradient(to left, #0D0D0D, transparent)" }} />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 h-full w-24 z-10"
+        style={{ background: "linear-gradient(to right, #0D0D0D, transparent)" }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10"
+        style={{ background: "linear-gradient(to left, #0D0D0D, transparent)" }}
+      />
 
       <div
-        className="flex"
+        className="animate-marquee flex w-max"
         style={{
-          animation: `marquee-scroll ${reverse ? "35s" : "30s"} linear infinite ${reverse ? "reverse" : "normal"}`,
-          width: "max-content",
+          animationDuration: reverse ? "35s" : "30s",
+          animationDirection: reverse ? "reverse" : "normal",
         }}
       >
         {doubled.map((tweet, i) => (
           <TweetCard key={i} tweet={tweet} />
         ))}
       </div>
-
-      <style>{`
-        @keyframes marquee-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
     </div>
   );
 }
 
 export function SocialProof() {
   return (
-    <section className="py-[110px] overflow-hidden">
+    <section className="py-24 md:py-32 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6">
-        <FadeIn className="max-w-[680px] mx-auto text-center mb-14">
-          <span className="font-mono text-xs font-bold tracking-[2.5px] uppercase text-dl-green">
-            Twitter / X
-          </span>
-          <h2 className="text-[clamp(30px,4vw,46px)] font-extrabold tracking-tight leading-[1.08] mt-4">
-            Naija is talking about it
-          </h2>
-          <p className="text-[18px] text-white/66 mt-4 leading-relaxed">
-            12,000+ Nigerians have already found out where their data really goes.
-          </p>
-        </FadeIn>
+        <SectionHeading
+          index="08"
+          eyebrow="Twitter / X"
+          segments={[
+            { text: "Naija is" },
+            { text: "talking about it", className: "text-dl-green" },
+          ]}
+          sub="12,000+ Nigerians have already found out where their data really goes."
+          className="mb-14"
+        />
       </div>
 
       {/* Full-bleed marquee */}

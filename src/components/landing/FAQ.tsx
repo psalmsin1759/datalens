@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const faqs = [
   {
@@ -51,51 +52,59 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="py-[110px]" id="faq">
+    <section className="py-24 md:py-32" id="faq">
       <div className="max-w-[1200px] mx-auto px-6">
-        <FadeIn className="max-w-[680px] mx-auto text-center mb-16">
-          <span className="font-mono text-xs font-bold tracking-[2.5px] uppercase text-dl-green">
-            Got questions?
-          </span>
-          <h2 className="text-[clamp(30px,4vw,46px)] font-extrabold tracking-tight leading-[1.08] mt-4">
-            Everything you need to know
-          </h2>
-          <p className="text-[18px] text-white/66 mt-4 leading-relaxed">
-            The answers Nigerians actually ask before downloading.
-          </p>
-        </FadeIn>
+        <SectionHeading
+          index="10"
+          eyebrow="Got questions?"
+          segments={[
+            { text: "Everything you" },
+            { text: "need to know", className: "text-dl-green" },
+          ]}
+          sub="The answers Nigerians actually ask before downloading."
+          className="mb-16"
+        />
 
-        <div className="max-w-[860px] mx-auto space-y-3">
+        <div className="max-w-[860px] mx-auto border-t border-white/[0.08]">
           {faqs.map((item, i) => {
             const isOpen = open === i;
             return (
-              <FadeIn key={i} delay={i * 0.04}>
-                <div
-                  className="rounded-2xl border transition-all duration-200 overflow-hidden"
-                  style={{
-                    background: isOpen
-                      ? "linear-gradient(135deg,rgba(0,230,118,0.06),rgba(20,25,41,0.95))"
-                      : "#141929",
-                    borderColor: isOpen
-                      ? "rgba(0,230,118,0.35)"
-                      : "#1E2A45",
-                  }}
-                >
+              <FadeIn key={i} delay={i * 0.03}>
+                <div className="border-b border-white/[0.08]">
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="w-full flex items-center gap-5 px-7 py-5 text-left cursor-pointer group"
+                    className="w-full flex items-center gap-5 md:gap-7 py-6 text-left cursor-pointer group"
                     aria-expanded={isOpen}
                   >
-                    {/* Toggle icon */}
+                    <span
+                      className={`font-mono text-[11px] tracking-[0.15em] shrink-0 transition-colors duration-200 ${isOpen ? "text-dl-green" : "text-white/30"}`}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    <div className="flex-1 flex items-center gap-3 min-w-0">
+                      <span
+                        className={`font-display text-[17px] md:text-[19px] font-semibold leading-snug transition-colors duration-200 ${isOpen ? "text-dl-green" : "text-white/90 group-hover:text-white"}`}
+                      >
+                        {item.q}
+                      </span>
+                      <span
+                        className="hidden sm:inline-flex shrink-0 text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full transition-colors duration-200"
+                        style={{
+                          background: isOpen ? "rgba(0,230,118,0.12)" : "rgba(255,255,255,0.05)",
+                          color: isOpen ? "#00E676" : "rgba(255,255,255,0.4)",
+                          border: isOpen ? "1px solid rgba(0,230,118,0.25)" : "1px solid rgba(255,255,255,0.08)",
+                        }}
+                      >
+                        {item.tag}
+                      </span>
+                    </div>
+
                     <span
                       className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-200"
                       style={{
-                        background: isOpen
-                          ? "rgba(0,230,118,0.15)"
-                          : "rgba(255,255,255,0.05)",
-                        border: isOpen
-                          ? "1px solid rgba(0,230,118,0.4)"
-                          : "1px solid rgba(255,255,255,0.1)",
+                        background: isOpen ? "rgba(0,230,118,0.15)" : "rgba(255,255,255,0.04)",
+                        border: isOpen ? "1px solid rgba(0,230,118,0.4)" : "1px solid rgba(255,255,255,0.1)",
                       }}
                     >
                       <motion.svg
@@ -109,22 +118,6 @@ export function FAQ() {
                         <path d="M7 1v12M1 7h12" stroke={isOpen ? "#00E676" : "white"} strokeWidth="1.5" strokeLinecap="round" />
                       </motion.svg>
                     </span>
-
-                    <div className="flex-1 flex items-center gap-3 min-w-0">
-                      <span className={`text-base font-semibold leading-snug transition-colors duration-200 ${isOpen ? "text-white" : "text-white/90"}`}>
-                        {item.q}
-                      </span>
-                      <span
-                        className="hidden sm:inline-flex shrink-0 text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full"
-                        style={{
-                          background: isOpen ? "rgba(0,230,118,0.12)" : "rgba(255,255,255,0.06)",
-                          color: isOpen ? "#00E676" : "rgba(255,255,255,0.42)",
-                          border: isOpen ? "1px solid rgba(0,230,118,0.25)" : "1px solid rgba(255,255,255,0.08)",
-                        }}
-                      >
-                        {item.tag}
-                      </span>
-                    </div>
                   </button>
 
                   <AnimatePresence initial={false}>
@@ -137,7 +130,7 @@ export function FAQ() {
                         transition={{ duration: 0.28, ease: [0.2, 0.7, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="px-7 pb-6 pt-1 text-[15px] text-white/66 leading-relaxed pl-[72px]">
+                        <p className="pb-7 text-[15px] text-white/55 leading-relaxed pl-9 md:pl-12 max-w-[640px]">
                           {item.a}
                         </p>
                       </motion.div>
@@ -153,7 +146,7 @@ export function FAQ() {
         <FadeIn className="text-center mt-12">
           <p className="text-sm text-white/42">
             Still have questions?{" "}
-            <a href="#" className="text-dl-green font-semibold hover:underline cursor-pointer">
+            <a href="/contact" className="text-dl-green font-semibold hover:underline cursor-pointer">
               Chat with us
             </a>
           </p>

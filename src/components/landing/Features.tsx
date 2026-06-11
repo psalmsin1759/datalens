@@ -1,11 +1,13 @@
 import { StaggerContainer, StaggerItem } from "@/components/ui/FadeIn";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
 const features = [
   {
     wide: true,
     color: "#00E676",
-    glowBg: "rgba(0,230,118,0.18)",
+    spot: "rgba(0,230,118,0.1)",
+    glowBg: "rgba(0,230,118,0.16)",
     iconBg: "rgba(0,230,118,0.12)",
     iconBorder: "rgba(0,230,118,0.3)",
     title: "Every megabyte, accounted for",
@@ -20,6 +22,7 @@ const features = [
   {
     wide: false,
     color: "#FFD700",
+    spot: "rgba(255,215,0,0.09)",
     iconBg: "rgba(255,215,0,0.12)",
     iconBorder: "rgba(255,215,0,0.3)",
     title: "Buy data in seconds",
@@ -33,6 +36,7 @@ const features = [
   {
     wide: false,
     color: "#5BC0EB",
+    spot: "rgba(91,192,235,0.09)",
     iconBg: "rgba(91,192,235,0.12)",
     iconBorder: "rgba(91,192,235,0.3)",
     title: "Receipts for every purchase",
@@ -47,6 +51,7 @@ const features = [
   {
     wide: false,
     color: "#FFB800",
+    spot: "rgba(255,184,0,0.09)",
     iconBg: "rgba(255,184,0,0.12)",
     iconBorder: "rgba(255,184,0,0.3)",
     title: "Alerts that have your back",
@@ -61,6 +66,7 @@ const features = [
   {
     wide: false,
     color: "#7B61FF",
+    spot: "rgba(123,97,255,0.09)",
     iconBg: "rgba(123,97,255,0.12)",
     iconBorder: "rgba(123,97,255,0.3)",
     title: "Private by design",
@@ -75,41 +81,48 @@ const features = [
 
 export function Features() {
   return (
-    <section className="py-[110px]" id="features">
+    <section className="py-24 md:py-32" id="features">
       <div className="max-w-[1200px] mx-auto px-6">
-        <FadeIn className="max-w-[680px] mx-auto text-center mb-16">
-          <span className="font-mono text-xs font-bold tracking-[2.5px] uppercase text-dl-green">
-            Everything you need
-          </span>
-          <h2 className="text-[clamp(30px,4vw,46px)] font-extrabold tracking-tight leading-[1.08] mt-4">
-            One app to <span className="text-dl-green">see, buy, and control</span> your data
-          </h2>
-          <p className="text-[18px] text-white/66 mt-4 leading-relaxed">
-            Built for the way Nigerians actually use data — across networks, on a budget, with full transparency.
-          </p>
-        </FadeIn>
+        <SectionHeading
+          index="04"
+          eyebrow="Everything you need"
+          segments={[
+            { text: "One app to" },
+            { text: "see, buy, and control", className: "text-dl-green" },
+            { text: "your data" },
+          ]}
+          sub="Built for the way Nigerians actually use data — across networks, on a budget, with full transparency."
+          className="mb-16 md:mb-20"
+        />
 
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5" staggerDelay={0.08}>
           {features.map((f, i) => (
             <StaggerItem key={i} className={f.wide ? "sm:col-span-2" : ""}>
-              <div
-                className="relative overflow-hidden rounded-[20px] bg-dl-surface border border-dl-border p-8 cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:border-dl-border-2 h-full"
+              <SpotlightCard
+                spotColor={f.spot}
+                className="group rounded-[24px] bg-white/[0.02] border border-white/[0.07] p-8 h-full transition-colors duration-300 hover:border-white/[0.16] cursor-default"
               >
                 {f.wide && f.glowBg && (
                   <div
-                    className="absolute top-[-60px] right-[-60px] w-[180px] h-[180px] rounded-full pointer-events-none"
-                    style={{ background: f.glowBg, filter: "blur(30px)" }}
+                    aria-hidden="true"
+                    className="absolute top-[-60px] right-[-60px] w-[200px] h-[200px] rounded-full pointer-events-none"
+                    style={{ background: f.glowBg, filter: "blur(36px)" }}
                   />
                 )}
-                <div
-                  className="w-[54px] h-[54px] rounded-[15px] flex items-center justify-center mb-[22px]"
-                  style={{ background: f.iconBg, border: `1px solid ${f.iconBorder}` }}
-                >
-                  {f.icon}
+                <div className="flex items-start justify-between">
+                  <div
+                    className="w-[54px] h-[54px] rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:-translate-y-1"
+                    style={{ background: f.iconBg, border: `1px solid ${f.iconBorder}` }}
+                  >
+                    {f.icon}
+                  </div>
+                  <span className="font-mono text-[11px] text-white/20 tracking-[0.2em]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </div>
-                <h3 className="text-[22px] font-bold tracking-tight">{f.title}</h3>
-                <p className="text-[15px] text-white/66 mt-2.5 leading-relaxed max-w-[460px]">{f.desc}</p>
-              </div>
+                <h3 className="font-display text-[21px] md:text-[23px] font-bold tracking-tight">{f.title}</h3>
+                <p className="text-[15px] text-white/55 mt-2.5 leading-relaxed max-w-[460px]">{f.desc}</p>
+              </SpotlightCard>
             </StaggerItem>
           ))}
         </StaggerContainer>

@@ -48,7 +48,7 @@ function StatCounter({ value, label, prefix, suffix, numeric, isGreen }: StatPro
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-[clamp(36px,5vw,56px)] font-extrabold tracking-tight leading-none">
+      <div className="font-display text-[clamp(44px,6vw,76px)] font-bold tracking-[-0.03em] leading-none">
         {prefix && (
           <span className={isGreen ? "text-dl-green" : "text-dl-gold"}>{prefix}</span>
         )}
@@ -59,7 +59,7 @@ function StatCounter({ value, label, prefix, suffix, numeric, isGreen }: StatPro
         )}
         {suffix && <span className={isGreen ? "text-dl-green" : ""}>{suffix}</span>}
       </div>
-      <div className="text-sm text-white/66 mt-2.5">{label}</div>
+      <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/45 mt-4">{label}</div>
     </div>
   );
 }
@@ -67,14 +67,20 @@ function StatCounter({ value, label, prefix, suffix, numeric, isGreen }: StatPro
 export function Stats() {
   return (
     <section
-      className="py-[110px] border-t border-b"
+      className="py-24 md:py-28 border-t border-b relative overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #0A2C1A, #0F3D24)",
         borderColor: "rgba(0,230,118,0.2)",
       }}
     >
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-9">
+      <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
+      <div
+        aria-hidden="true"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(0,230,118,0.12), transparent 65%)", filter: "blur(50px)" }}
+      />
+      <div className="max-w-[1200px] mx-auto px-6 relative">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 md:divide-x md:divide-white/[0.08]">
           <StatCounter
             value="12k+"
             label="Nigerians tracking daily"

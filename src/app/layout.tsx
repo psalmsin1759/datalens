@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, JetBrains_Mono } from "next/font/google";
+import { Poppins, JetBrains_Mono, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -16,6 +16,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "DataLens — Your data, fully accounted for",
   description:
@@ -29,9 +36,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${poppins.variable} ${jetbrainsMono.variable} ${bricolage.variable}`}>
       <body className="min-h-screen bg-dl-bg text-white antialiased overflow-x-hidden">
         {children}
+        <div className="noise-overlay" aria-hidden="true" />
       </body>
     </html>
   );
